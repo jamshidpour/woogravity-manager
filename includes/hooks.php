@@ -14,7 +14,7 @@ add_action('admin_menu', function() {
         'manage_options',
         'woogravity-manager',
         function() {
-            include WGM_PLUGIN_DIR . 'admin/test-manager.php';
+            include WGM_PLUGIN_DIR . 'admin/test_manager.php';
         },
         'dashicons-welcome-write-blog',
         25
