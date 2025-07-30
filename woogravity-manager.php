@@ -20,7 +20,7 @@ require_once WGM_PLUGIN_DIR . 'admin/settings.php';
 require_once WGM_PLUGIN_DIR . 'includes/functions.php';
 require_once WGM_PLUGIN_DIR . 'includes/hooks.php';
 require_once WGM_PLUGIN_DIR . 'includes/shortcodes.php';
-require_once WGM_PLUGIN_DIR . 'admin/admin-functions.php';
+require_once WGM_PLUGIN_DIR . 'admin/admin_functions.php';
 require_once WGM_PLUGIN_DIR . 'includes/woocommerce.php';
 
 // فعال‌سازی افزونه
