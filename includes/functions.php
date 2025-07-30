@@ -13,8 +13,11 @@ function wgm_get_tests($only_active = false) {
     $table = WGM_TESTS_TABLE;
     
     try {
-        $where = $only_active ? 'WHERE is_active = 1' : '';
-        $results = $wpdb->get_results($wpdb->prepare("SELECT * FROM {$table} {$where}"), ARRAY_A);
+        if ($only_active) {
+            $results = $wpdb->get_results($wpdb->prepare("SELECT * FROM {$table} WHERE is_active = %d", 1), ARRAY_A);
+        } else {
+            $results = $wpdb->get_results("SELECT * FROM {$table}", ARRAY_A);
+        }
         
         if ($wpdb->last_error) {
             error_log('WGM Plugin DB Error: ' . $wpdb->last_error);
