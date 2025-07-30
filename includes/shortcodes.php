@@ -41,13 +41,13 @@ add_shortcode('woogravity_test_form', function($atts) {
     // آماده‌سازی URL ریدایرکت
     $redirect_url = get_option('wgm_redirect_url', '');
     $redirect_query = get_option('wgm_redirect_query', '');
-    
+
     if (empty($redirect_url)) {
         $redirect_url = function_exists('wc_get_account_endpoint_url') ? 
             wc_get_account_endpoint_url('dashboard') : 
             home_url('/my-account');
     }
-    
+
     // پردازش پارامترهای ریدایرکت
     if (!empty($redirect_query)) {
         // جایگزینی form_id
@@ -145,9 +145,37 @@ add_shortcode('woogravity_test_form', function($atts) {
     return ob_get_clean();
 });
 
-// پشتیبانی از شورتکد قدیمی برای سازگاری با نسخه‌های قبلی
-add_shortcode('dynamic_test_form', function($atts) {
-    return do_shortcode('[woogravity_test_form ' . implode(' ', array_map(function($k, $v) {
-        return $k . '="' . $v . '"';
-    }, array_keys($atts), $atts)) . ']');
+
+/**
+ * هوک برای پردازش پارامترهای URL و اضافه کردن عنوان آزمون
+ * فقط بر اساس شناسه فرم، بدون نیاز به پارامتر اضافی
+ */
+add_filter('gform_field_value_test_title', function($value) {
+    // دریافت شناسه فرم از URL
+    $form_id = isset($_GET['form']) ? intval($_GET['form']) : 0;
+    
+    if ($form_id > 0) {
+        // دریافت اطلاعات آزمون از دیتابیس
+        global $wpdb;
+        $table = WGM_TESTS_TABLE;
+        
+        $test = $wpdb->get_row($wpdb->prepare(
+            "SELECT title FROM {$table} WHERE form_id = %d AND is_active = 1",
+            $form_id
+        ));
+        
+        if ($test && !empty($test->title)) {
+            return sanitize_text_field($test->title);
+        }
+        
+        // اگر عنوان خاصی تعیین نشده، از عنوان اصلی فرم گرویتی استفاده کن
+        if (class_exists('GFAPI')) {
+            $gf_form = GFAPI::get_form($form_id);
+            if ($gf_form && !empty($gf_form['title'])) {
+                return sanitize_text_field($gf_form['title']);
+            }
+        }
+    }
+    
+    return $value; // اگر هیچی پیدا نشد، مقدار اصلی رو برگردون
 });
