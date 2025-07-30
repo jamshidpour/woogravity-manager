@@ -63,24 +63,24 @@ class WGM_Settings {
                         </td>
                     </tr>
                     <tr>
-                        <th scope="row"><?php _e('لینک بازگشت پس از اتمام آزمون', 'woogravity-manager'); ?></th>
+                        <th scope="row"><?php _e('هدایت به صفحه پس از اتمام آزمون', 'woogravity-manager'); ?></th>
                         <td>
                             <input type="url" name="wgm_redirect_url" id="wgm_redirect_url" 
-                                   value="<?php echo esc_attr($settings['redirect_url']); ?>" 
-                                   class="regular-text" 
-                                   placeholder="https://example.com/my-account" />
+                                value="<?php echo esc_attr(!empty($settings['redirect_url']) ? $settings['redirect_url'] : '/client-info/'); ?>" 
+                                class="regular-text" 
+                                placeholder="/client-info/" />
                             <p class="description">
                                 <?php _e('لینک صفحه‌ای که کاربر پس از اتمام آزمون به آن هدایت شود. اگر خالی باشد، به حساب کاربری هدایت می‌شود.', 'woogravity-manager'); ?>
                             </p>
                         </td>
                     </tr>
                     <tr>
-                        <th scope="row"><?php _e('پارامترهای دلخواه برای لینک بازگشت', 'woogravity-manager'); ?></th>
+                        <th scope="row"><?php _e('پارامترهای دلخواه برای هدایت', 'woogravity-manager'); ?></th>
                         <td>
                             <input type="text" name="wgm_redirect_query" id="wgm_redirect_query" 
-                                   value="<?php echo esc_attr($settings['redirect_query']); ?>" 
-                                   class="regular-text" 
-                                   placeholder="param1=value1&param2=value2" />
+                                value="<?php echo esc_attr(!empty($settings['redirect_query']) ? $settings['redirect_query'] : 'form={form_id}'); ?>" 
+                                class="regular-text" 
+                                placeholder="form={form_id}" />
                             <p class="description">
                                 <?php _e('پارامترهای اضافی که باید به URL بازگشت اضافه شوند (به فرمت Query String).', 'woogravity-manager'); ?>
                             </p>
