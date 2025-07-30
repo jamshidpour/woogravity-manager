@@ -9,8 +9,8 @@ if (!defined('ABSPATH')) exit;
 add_action('admin_menu', function() {
     // منوی اصلی
     add_menu_page(
-        'WooGravity Manager',
-        'WooGravity Manager',
+        'مدیریت آزمون‌ها',
+        'مدیریت آزمون‌ها',
         'manage_options',
         'woogravity-manager',
         function() {
