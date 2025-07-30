@@ -109,7 +109,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['wgm_tests'])) {
     
     // نمایش پیغام‌های نتیجه
     if ($success_count > 0) {
-        echo '<div class="updated"><p>' . sprintf(_n('%d تنظیمات ذخیره شد.', '%d تنظیمات ذخیره شدند.', $success_count, 'woogravity-manager'), $success_count) . '</p></div>';
+        echo '<div class="updated"><p>' . sprintf(_n('تنظیمات ذخیره شد.', 'تنظیمات ذخیره شدند.', $success_count, 'woogravity-manager'), $success_count) . '</p></div>';
     }
     
     if ($error_count > 0) {
@@ -124,7 +124,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['wgm_tests'])) {
 
 // بررسی وجود Gravity Forms
 if (!class_exists('GFAPI')) {
-    echo '<div class="error"><p>' . __('افزونه Gravity Forms فعال نیست. لطفاً ابتدا آن را نصب و فعال کنید.', 'woogravity-manager') . '</p></div>';
+    echo '<div class="error"><p>' . __('افزونه Gravity Forms فعال نیست. لطفا ابتدا آن را نصب و فعال کنید.', 'woogravity-manager') . '</p></div>';
     return;
 }
 
@@ -175,8 +175,8 @@ foreach ($tests as $t) {
                     <th scope="col"><?php _e('نام فرم', 'woogravity-manager'); ?></th>
                     <th scope="col"><?php _e('Slug', 'woogravity-manager'); ?> <span class="description">(<?php _e('آدرس یکتا', 'woogravity-manager'); ?>)</span></th>
                     <th scope="col"><?php _e('عنوان آزمون', 'woogravity-manager'); ?></th>
-                    <th scope="col"><?php _e('محدودیت زمانی', 'woogravity-manager'); ?></th>
-                    <th scope="col"><?php _e('مدت زمان (دقیقه)', 'woogravity-manager'); ?></th>
+                    <th scope="col"><?php _e('محدودیت زمان', 'woogravity-manager'); ?></th>
+                    <th scope="col"><?php _e('زمان آزمون (دقیقه)', 'woogravity-manager'); ?></th>
                     <th scope="col"><?php _e('فعال؟', 'woogravity-manager'); ?></th>
                 </tr>
             </thead>
@@ -201,7 +201,6 @@ foreach ($tests as $t) {
                             pattern="[a-z0-9\-]+"
                             title="<?php _e('فقط حروف کوچک انگلیسی، اعداد و خط تیره مجاز است', 'woogravity-manager'); ?>"
                         />
-                        <div class="description"><?php _e('خالی بگذارید تا حذف شود', 'woogravity-manager'); ?></div>
                     </td>
                     <td>
                         <input 
